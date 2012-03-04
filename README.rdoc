@@ -48,7 +48,7 @@ If Hasherizer processes an array of objects of the same type (an array of book o
 
 == Contact Info
  
-I can be contacted at pepe.hipolito@gmail.com[pepe.hipolito@gmail.com].
+I can be contacted at mailto:pepe.hipolito@gmail.com
 
 
 == Contributing to Hasherizer
