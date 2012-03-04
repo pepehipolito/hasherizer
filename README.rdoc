@@ -5,12 +5,12 @@ Recursively convert object's instance variables to a flat hash.
 
 = Why hasherizer?
 
-I worked on a project with the Google Books[http://code.google.com/apis/books/] API[http://code.google.com/apis/books/docs/v1/using.html] and while working on it I created the <a href="">bookle gem</a>. This gem queries the Google Books API and converts the returned hash from Google into objects that a Ruby program can easily use. The Google Books API returns a hash of hashes and the same structure is mimicked by the gem, ending up with objects containing other objects. This object generation makes life very easy for accessing the information but didn't work very well when instanciating an object. What I needed was a hash that I could pass to _new_. Hasherizer was born.
+I worked on a project with the Google Books[http://code.google.com/apis/books/] API[http://code.google.com/apis/books/docs/v1/using.html] and while working on it I created the bookle[https://github.com/pepehipolito/hasherizer] gem. This gem queries the Google Books API and converts the returned hash from Google into objects that a Ruby program can easily use. The Google Books API returns a hash of hashes and the same structure is mimicked by the gem, ending up with objects containing other objects. This object generation makes life very easy for accessing the information but didn't work very well when instanciating a book object. What I needed was a hash that I could pass to _new_.
 
 
 = Why the name?
 
-_hasher_ was already taken and I didn't like _hasherer_. _hasherizer_ sounds better. ;)
+_hasher_ was already taken and I didn't like _hasherer_. _hasherizer_ sounded better. ;)
 
 
 = What hasherizer does
@@ -38,6 +38,7 @@ Hasherizer merges deeper level objects into top level ones. This means that if d
 
 Given the following original models:
 
+<code>
 	class Book
 		attr_reader :list_price, retail_price		# Both contain references to objects
 	end
@@ -49,9 +50,11 @@ Given the following original models:
 	class RetailPrice
 		attr_reader :amount, :currency_code
 	end
+</code>
 
 _amount_ and _currency_code_ would be overriden and only ListPrice's or RetailPrice's values would prevail. A possible solution to the clashing name instance variables would be:
 
+<code>
 	class Book
 		attr_reader :list_price, retail_price		# Both contain references to objects
 	end
@@ -71,6 +74,7 @@ _amount_ and _currency_code_ would be overriden and only ListPrice's or RetailPr
 			{"retail_price_amount" => self.amount, "retail_price_currency_code" => self.currency_code}
 		end
 	end
+</code>
 
 If hasherizer processes an array of objects of the same type (an array of book objects, for example) the instance variables will be overriden successively and only the last one will prevail.
 
