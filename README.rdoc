@@ -64,5 +64,4 @@ I can be contacted at mailto:pepe.hipolito@gmail.com
 
 == Copyright
 
-Copyright (c) 2012 Pepe Hipolito. See LICENSE.txt for
-further details.
+Copyright (c) 2012 Pepe Hipolito. MIT license. See LICENSE.txt for further details.
