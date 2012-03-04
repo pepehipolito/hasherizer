@@ -4,7 +4,7 @@ module Hasherizer
   # 
   # @param [Object, #read] -- Object which instance variables are to be converted to a hash.
   # @return [Hash]/[Object] -- A hash or an object.
-  def self.to_hash(object)
+  def self.hasherize(object)
     # Check if object has hash behavior. Check before :each because hashes also respond to :each.
     if object.respond_to? :to_hash
       object
@@ -18,7 +18,7 @@ module Hasherizer
       # If all elements have instance variables, process each element.
       elsif object.all? {|element| element.instance_variables.size > 0}
         hash = {}
-        object.each {|element| hash.merge! to_hash(element)}
+        object.each {|element| hash.merge! hasherize(element)}
         hash
       # Otherwise return the object/value.
       else
@@ -37,7 +37,7 @@ module Hasherizer
         hash = {}
 
         instance_vars.each do |var|
-          resp = to_hash(object.instance_eval(var))
+          resp = hasherize(object.instance_eval(var))
 
           # If instance variable has hash behavior add it to the returned hash values.
           if resp.respond_to? :to_hash

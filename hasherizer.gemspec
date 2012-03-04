@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'hasherizer'
-  s.version     = '0.0.0'
+  s.version     = '0.0.2'
   s.date        = '2012-02-26'
   s.summary     = "Recursively convert object's instance variables to a flat hash."
   s.description = "Extract instance variables names and values into a flat hash no matter how many levels deep your objects are."
