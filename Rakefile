@@ -1,53 +1,24 @@
-# encoding: utf-8
+# # Look in the tasks/setup.rb file for the various options that can be
+# # configured in this Rakefile. The .rake files in the tasks directory
+# # are where the options are used.
 
-require 'rubygems'
-require 'bundler'
-begin
-  Bundler.setup(:default, :development)
-rescue Bundler::BundlerError => e
-  $stderr.puts e.message
-  $stderr.puts "Run `bundle install` to install missing gems"
-  exit e.status_code
-end
-require 'rake'
+# # load 'tasks/setup.rb'
 
-require 'jeweler'
-Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "hasherizer"
-  gem.homepage = "http://github.com/pepehipolito/hasherizer"
-  gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "pepe.hipolito@gmail.com"
-  gem.authors = ["Pepe Hipolito"]
-  # dependencies defined in Gemfile
-end
-Jeweler::RubygemsDotOrgTasks.new
+# ensure_in_path 'lib'
+# require 'hasherizer'
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-end
+# task :default => 'spec:run'
 
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
-end
+# PROJ.name = 'britify'
+# PROJ.version = '0.0.1'
+# PROJ.authors = 'Jamie van Dyke'
+# PROJ.email = 'jamie@parfa.it'
+# PROJ.url = 'http://blog.fearoffish.com/'
+# PROJ.homepage = 'http://github.com/fearoffish/britify'
+# PROJ.rubyforge.name = 'britify'
+# PROJ.summary = 'British <-> American Translator'
+# PROJ.description = 'Britify is an amusement project, for translating the differences between British and American slangs.'
 
-task :default => :test
+# PROJ.spec.opts << '--color'
 
-require 'rdoc/task'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "hasherizer #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
+# # EOF

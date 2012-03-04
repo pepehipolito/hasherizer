@@ -1,6 +1,84 @@
 = hasherizer
 
-Description goes here.
+Recursively convert object's instance variables to a flat hash.
+
+
+= Why hasherizer?
+
+I worked on a project with the <a href="http://code.google.com/apis/books/">Google Books API</a> and while working on it I created the <a href="">bookle gem</a>. This gem queries the Google Books API and converts the returned hash from Google into objects that a Ruby program can easily use. The Google Books API returns a hash of hashes and the same structure is mimic'ed by the gem, ending up with objects containing other objects. This object generation makes life very easy for accessing the information but didn't work very well when instanciating an object. What I needed was a hash that I could pass to _new_. Hasherizer was born.
+
+
+= Why the name?
+
+_hasher_ was already taken and I didn't like _hasherer_. _hasherizer_ sounds better. ;)
+
+
+= What hasherizer does
+
+Hasherizer analyzes the object passed and converts all its instance variables to a flat hash. If variables contain objects that also contain instance variables, those objects are also processed and their instance variables added to the flat hash. Hasherizer works recursively until the last object is processed.
+
+Hasherizer is concerned with objects that are hash-like (respond_to?(:to_hash) == true), that are array-like (respond_to?(:each) == true) or that contain instance variables.
+
+Hash-like objects are returned "as is", meaning that they are not processed.
+
+Array-like objects are processed as follows:
+
+- If each element is hash-like then all elements are put into a flat hash and returned.
+- If each element is an object containing instance variables then each element is sent for processing individually (and recursively).
+- If none of the above the object itself is returned as is.
+
+Objects that contain instance variables are sent for processing and after they are processed we will either have a hash or an object/value that is not a hash. If a hash is returned then it's added to the final flat hash. If no hash is returned the object is assigned to its instance variable's key and added to the final flat hash.
+
+The returned value is a flat, one level hash.
+
+
+= Gotchas
+
+Hasherizer merges deeper level objects into top level ones. This means that if different objects have the same instance variable name the values will be overriden at some point, since hashes have unique keys. In order to overcome this issue you will need to manually create an instance _to_hash_ method somewhere in your model(s) to "rename" one (or all) of the instance variables. For example:
+
+Given the following original models:
+
+	class Book
+		attr_reader :list_price, retail_price		# Both contain references to objects
+	end
+
+	class ListPrice
+		attr_reader :amount, :currency_code
+	end
+
+	class RetailPrice
+		attr_reader :amount, :currency_code
+	end
+
+_amount_ and _currency_code_ would be overriden and only ListPrice's or RetailPrice's values would prevail. A possible solution to the clashing name instance variables would be:
+
+	class Book
+		attr_reader :list_price, retail_price		# Both contain references to objects
+	end
+
+	class ListPrice
+		attr_reader :amount, :currency_code
+
+		def to_hash
+			{"list_price_amount" => self.amount, "list_price_currency_code" => self.currency_code}
+		end
+	end
+
+	class RetailPrice
+		attr_reader :amount, :currency_code
+
+		def to_hash
+			{"retail_price_amount" => self.amount, "retail_price_currency_code" => self.currency_code}
+		end
+	end
+
+If hasherizer processes an array of objects of the same type (an array of book objects, for example) the instance variables will be overriden successively and only the last one will prevail.
+
+
+== Contact Info
+ 
+I can be contacted at pepe.hipolito@gmail.com <link>.
+
 
 == Contributing to hasherizer
  
@@ -12,8 +90,8 @@ Description goes here.
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
+
 == Copyright
 
 Copyright (c) 2012 Pepe Hipolito. See LICENSE.txt for
 further details.
-
