@@ -43,7 +43,7 @@ Hasherizer merges deeper level objects into top level ones. This means that if d
 
 Given the following original models:
 
-	<ttclass Book</tt>
+	<tt>class Book</tt>
 
 		attr_reader :list_price, retail_price		# Both contain references to objects
 	end
