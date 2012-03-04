@@ -5,7 +5,7 @@ Recursively convert object's instance variables to a flat hash.
 
 = Why hasherizer?
 
-I worked on a project with the "Google Books API"[http://code.google.com/apis/books/] and while working on it I created the <a href="">bookle gem</a>. This gem queries the Google Books API and converts the returned hash from Google into objects that a Ruby program can easily use. The Google Books API returns a hash of hashes and the same structure is mimic'ed by the gem, ending up with objects containing other objects. This object generation makes life very easy for accessing the information but didn't work very well when instanciating an object. What I needed was a hash that I could pass to _new_. Hasherizer was born.
+I worked on a project with the "Google Books API"[http://code.google.com/apis/books/] and while working on it I created the <a href="">bookle gem</a>. This gem queries the Google Books API and converts the returned hash from Google into objects that a Ruby program can easily use. The Google Books API returns a hash of hashes and the same structure is mimicked by the gem, ending up with objects containing other objects. This object generation makes life very easy for accessing the information but didn't work very well when instanciating an object. What I needed was a hash that I could pass to _new_. Hasherizer was born.
 
 
 = Why the name?
