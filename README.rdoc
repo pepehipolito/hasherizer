@@ -45,22 +45,10 @@ Given the following original models:
 
 	<tt>class Book</tt>
 
-		<tt>attr_reader :list_price, retail_price		# Both contain references to objects</tt>
-	end
+	<tt>  attr_reader :list_price, retail_price		# Both contain references to objects</tt>
 
-	<ul>
+	<tt>end</tt>
 
-		<li>class ListPrice</li>
-
-		<ul>
-
-			<li>attr_reader :amount, :currency_code</li>
-
-		</ul>
-
-		<li>end</li>
-
-	</ul>
 
 	class ListPrice
 		attr_reader :amount, :currency_code
