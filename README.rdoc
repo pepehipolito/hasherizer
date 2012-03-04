@@ -32,13 +32,18 @@ Objects that contain instance variables are sent for processing and after they a
 The returned value is a flat, one level hash.
 
 
+= How to use it
+
+Hasherizer.to_hash(an_object)
+
+
 = Gotchas
 
 Hasherizer merges deeper level objects into top level ones. This means that if different objects have the same instance variable name the values will be overriden at some point, since hashes have unique keys. In order to overcome this issue you will need to manually create an instance _to_hash_ method somewhere in your model(s) to "rename" one (or all) of the instance variables. For example:
 
 Given the following original models:
 
-<pre>
+\<pre\>
 	class Book
 		attr_reader :list_price, retail_price		# Both contain references to objects
 	end
@@ -50,11 +55,11 @@ Given the following original models:
 	class RetailPrice
 		attr_reader :amount, :currency_code
 	end
-</pre>
+\<\/pre\>
 
 _amount_ and _currency_code_ would be overriden and only ListPrice's or RetailPrice's values would prevail. A possible solution to the clashing name instance variables would be:
 
-<pre>
+\<\pre\>
 	class Book
 		attr_reader :list_price, retail_price		# Both contain references to objects
 	end
@@ -74,7 +79,7 @@ _amount_ and _currency_code_ would be overriden and only ListPrice's or RetailPr
 			{"retail_price_amount" => self.amount, "retail_price_currency_code" => self.currency_code}
 		end
 	end
-</pre>
+\<\/pre\>
 
 If Hasherizer processes an array of objects of the same type (an array of book objects, for example) the instance variables will be overriden successively and only the last one will prevail.
 

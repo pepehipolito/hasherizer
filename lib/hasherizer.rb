@@ -1,5 +1,9 @@
 module Hasherizer
 
+  # Extract instance variables names and values into a flat hash no matter how many levels deep your objects are.
+  # 
+  # @param [Object, #read] -- Object which instance variables are to be converted to a hash.
+  # @return [Hash]/[Object] -- A hash or an object.
   def self.to_hash(object)
     # Check if object has hash behavior. Check before :each because hashes also respond to :each.
     if object.respond_to? :to_hash
