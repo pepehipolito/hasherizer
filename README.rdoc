@@ -43,7 +43,7 @@ Hasherizer merges deeper level objects into top level ones. This means that if d
 
 Given the following original models:
 
-\<pre\>
+<tt>
 	class Book
 		attr_reader :list_price, retail_price		# Both contain references to objects
 	end
@@ -55,11 +55,11 @@ Given the following original models:
 	class RetailPrice
 		attr_reader :amount, :currency_code
 	end
-\<\/pre\>
+<\tt>
 
 _amount_ and _currency_code_ would be overriden and only ListPrice's or RetailPrice's values would prevail. A possible solution to the clashing name instance variables would be:
 
-\<\pre\>
+<tt>
 	class Book
 		attr_reader :list_price, retail_price		# Both contain references to objects
 	end
@@ -79,7 +79,7 @@ _amount_ and _currency_code_ would be overriden and only ListPrice's or RetailPr
 			{"retail_price_amount" => self.amount, "retail_price_currency_code" => self.currency_code}
 		end
 	end
-\<\/pre\>
+<\tt>
 
 If Hasherizer processes an array of objects of the same type (an array of book objects, for example) the instance variables will be overriden successively and only the last one will prevail.
 
