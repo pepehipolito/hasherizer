@@ -1,11 +1,11 @@
 Gem::Specification.new do |s|
   s.name        = 'hasherizer'
-  s.version     = '0.0.3'
+  s.version     = '0.0.4'
   s.date        = '2012-02-26'
   s.summary     = "Recursively convert object's instance variables to a flat hash."
   s.description = "Extract instance variables names and values into a flat hash no matter how many levels deep your objects are."
   s.authors     = ["Pepe Hipolito"]
   s.email       = 'pepe.hipolito@gmail.com'
   s.files       = Dir.glob("lib/**/*.rb")
-  s.homepage    = 'https://rubygems.org/gems/hasherizer'
+  s.homepage    = 'https://github.com/pepehipolito/hasherizer'
 end
