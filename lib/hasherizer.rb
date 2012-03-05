@@ -1,3 +1,4 @@
+# Makes a hash out of an object recursively.
 module Hasherizer
 
   # Extract instance variables names and values into a flat hash no matter how many levels deep your objects are.
