@@ -6,8 +6,6 @@ module Hasherizer
   # @param [Object, #read] -- Object which instance variables are to be converted to a hash.
   # @return [Hash]/[Object] -- A hash or an object.
   def self.to_hash(object)
-    puts object.inspect
-    puts object.respond_to? :to_hash
     # Check if object has hash behavior. Check before :each because hashes also respond to :each.
     if object.respond_to? :to_hash
       object
